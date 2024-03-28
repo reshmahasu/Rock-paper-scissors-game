@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>rock paper scissors game</title>
+<link rel="stylesheet" type="text/css" href="C:\Users\ELCOT\Desktop\javascript\css\game.css">
+</head>
+<body>
+<img src="images.jpeg" id="img">
+<div class="container">
+<div class="user_score">
+    <h2>&#128113 Player:1</h2>
+    <p id="player1_score">0</p>
+</div>
+<div class="computer_score">
+    <h2>💻 Player:2</h2>
+    <p id="player2_score">0</p>
+</div>
+<div id="final_container"><h1 id="final"></h1>
+<h1 style="text-align:center" id="final_result"></h1>
+</div>
+<button id="rock" onclick="check('rock')"> <img src="rock.jpg" class="image"> </button>
+<button  id="paper" onclick="check('paper')"> <img src="paper.jpg"class="image"> </button>
+<button id="scissor" onclick="check('scissor')"> <img src="scissor.jpg" class="image"> </button>
+<div id="result_container"><h1 id="result"></h1></div>
+</div>
+
+<script>
+var u_score=0;
+var c_score=0;
+var choices=["rock","paper","scissor"];
+var num=Math.floor(Math.random()*3);
+var computer=choices[num];
+
+   function check(inputs){
+
+      if(computer==inputs){
+          document.getElementById("result").innerHTML="Match Tie" +"💁‍♀️";
+          document.getElementById("final").innerHTML="Player 1 Choice:"+" "+inputs +" "+ "VS"+" "+"Player 2 Choice:"+" "+computer ;
+        }
+      else if((computer=="rock" && inputs=="scissor")||(computer=="paper" && inputs=="rock")||(computer=="scissor" && inputs=="paper")){
+            document.getElementById("result").innerHTML="Player 2  Win"+"🏆";
+            document.getElementById("final").innerHTML="Player 1 Choice:"+" "+inputs +" "+ "VS"+" "+"Player 2 Choice:"+" "+computer ;
+            c_score++;
+        }
+      else{
+            document.getElementById("result").innerHTML="Player 1  Win"+"🏆";
+            document.getElementById("final").innerHTML="Player 1 Choice:"+" "+inputs +" "+ "VS"+" "+"Player 2 Choice:"+" "+computer ;
+            u_score++;
+        }
+
+            document.getElementById("player1_score").innerHTML=u_score;
+            document.getElementById("player2_score").innerHTML=c_score;
+
+
+         if(u_score==5 && u_score>c_score){
+          
+           document.getElementById("final").innerHTML="Player 2 Loss"+" " +"💁‍♀️"+" "+"Player 1  Win The Match" +" "+"🏆";
+           reset();
+        }
+      else if(c_score==5 && c_score>u_score){
+           
+           document.getElementById("final").innerHTML="Player 1 Loss"+" " +"💁‍♀️"+" "+"Player 2  Win The Match" +" "+"🏆";
+           reset();
+        }
+      else if(c_score==5 && u_score==5){
+           
+           document.getElementById("final").innerHTML=" Match Draw"+" "+"💁‍♀️";
+           reset();   
+        }
+}
+
+
+function reset(){
+        u_score=0;
+        c_score=0;
+        
+}
+
+</script>
+</body>
+</html>
